@@ -1,11 +1,14 @@
-# First stage: Build the JAR file
-FROM maven:3.8.5-openjdk-17 AS build
-WORKDIR /app
-COPY . /app
-RUN mvn clean package -DskipTests
+# Use a base image with Java
+FROM openjdk:17-jdk-slim
 
-# Second stage: Create a lightweight container for the JAR
-FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /app/target/Budget-0.0.1-SNAPSHOT.jar Budget.jar
+# Set the working directory
+WORKDIR /app
+
+# Copy the JAR file from the target directory
+COPY target/Budget-0.0.1-SNAPSHOT.jar app.jar
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Expose the port
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","Budget.jar"]

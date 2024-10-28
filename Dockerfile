@@ -8,4 +8,4 @@ RUN mvn clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 COPY --from=build /app/target/Budget-0.0.1-SNAPSHOT.jar Budget.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","PersonalBudget.jar"]
+ENTRYPOINT ["java","-jar","Budget.jar"]

@@ -1,5 +1,5 @@
-# Use a base image with Maven to build the application
-FROM maven:3.8.6-openjdk-17 AS build
+# Use a base image with Maven to build the application      maven:3.8.6-
+FROM openjdk-17 AS build
 
 # Set the working directory
 WORKDIR /app

@@ -1,5 +1,5 @@
 ## Overview
-The **Personal Budget Project** is a web application built using Java and Spring Boot, designed to help users manage their personal finances effectively. The application allows users to create budgets, track expenses and incomes, and visualize their financial health over time.
+The **Personal Budget Project** is a web application built using Java and Spring Boot, designed to help users manage their personal finances effectively. The application allows users to create budgets, track expenses and incomes, and visualize their financial health over time. You can check out the app here: https://personalbudgetproject.onrender.com/login
 
 ## Features
 - **User Registration and Login**: Users can create an account and securely log in using Spring Security.

@@ -20,13 +20,6 @@ public class UserController {
         model.addAttribute("error", "");
         return "registrationForm";
     }
-/*
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "loginForm";
-    }
-
- */
 
     @GetMapping("/login")
     public String showLoginForm(Model model, @RequestParam(value = "error", required = false) String error) {

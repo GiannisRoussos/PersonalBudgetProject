@@ -20,9 +20,19 @@ public class UserController {
         model.addAttribute("error", "");
         return "registrationForm";
     }
-
+/*
     @GetMapping("/login")
     public String login(Model model) {
+        return "loginForm";
+    }
+
+ */
+
+    @GetMapping("/login")
+    public String showLoginForm(Model model, @RequestParam(value = "error", required = false) String error) {
+        if (error != null) {
+            model.addAttribute("error", error);
+        }
         return "loginForm";
     }
 
@@ -37,11 +47,18 @@ public class UserController {
     public String registerUser(
             @RequestParam("username") String username,
             @RequestParam("password") String password,
+            @RequestParam("confirmPassword") String confirmPassword,
             @RequestParam("email") String email,
             Model model) {
 
         // Create a DTO from form parameters
-        UserRegistrationDTO userDTO = new UserRegistrationDTO(username, password, email);
+        UserRegistrationDTO userDTO = new UserRegistrationDTO(username, password, confirmPassword, email);
+
+        // Check if password and confirmPassword match
+        if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) {
+            model.addAttribute("error", "Passwords do not match.");
+            return "registrationForm";
+        }
 
         try {
             // Register the user using the service

@@ -82,7 +82,9 @@
 <div class="login-container">
     <h1>Login</h1>
     <!-- Display specific error message -->
-    <div th:if="${session.error}" class="error-message" th:text="${session.error}"></div>
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
 
     <form th:action="@{/login}" method="post">
         <div class="form-group">

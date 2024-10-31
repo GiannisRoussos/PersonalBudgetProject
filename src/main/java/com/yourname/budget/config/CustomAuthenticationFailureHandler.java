@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
@@ -25,10 +26,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
             errorMessage = "Invalid login attempt";
         }
 
-        // Set the error message as a session attribute
-        request.getSession().setAttribute("error", errorMessage);
-
-        // Redirect to the login page with an error flag
-        response.sendRedirect("/loginForm.html");
+        // Redirect to the login page with the error message as a query parameter
+        response.sendRedirect("/login?error=" + URLEncoder.encode(errorMessage, "UTF-8"));
     }
 }
